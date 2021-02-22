@@ -59,7 +59,7 @@ data_for_Table1 %>%
   arrange(Core_Location, Pred_Decade) -> summary_data_Table1
 
 # Write csv
-write_csv(summary_data_Table1, here("outputs","Table1.csv"))
+write_csv(summary_data_Table1, here("figs_tables","Table1.csv"))
 
 ## Table S1 ####
 data_for_Table1 %>% 
@@ -68,4 +68,4 @@ data_for_Table1 %>%
             upper = max(Pred_Decade)) -> summary_data_TableS1
 
 # Write csv
-write_csv(summary_data_TableS1, here("outputs","TableS1.csv"))
+write_csv(summary_data_TableS1, here("figs_tables","TableS1.csv"))
