@@ -18,7 +18,8 @@ assay %>%
 
 # Subset data for individual analysis of Assay 3 data
 assay3 <- assay %>%
-  filter(Assay_Num == 3 & Treatment != "None")  
+  filter(Assay_Num == 3 & Treatment != "None") %>% 
+  mutate(Core_Location = factor(Core_Location))
 
 # There is complete separation so we can fit with brglm()
 test <- glm(Germinated ~ Treatment + Depth_Top, data = assay3, family = "binomial")
