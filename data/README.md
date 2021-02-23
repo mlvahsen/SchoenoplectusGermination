@@ -21,7 +21,7 @@ The metadata for the two data files in this folder are as follows:
 
 ## tetrazolium_data.csv
 Note: all seeds that underwent tetrazolium testing had failed to germinate in a germination trial
-* **unique_id** = unique id for a core and layer from which seeds were recovered from (_A = 
+* **unique_id** = unique id for a core and layer from which seeds were recovered from. the last letter in the id maps to depth below the marsh surface, with A being the deepest layer of a core
 * **Core_Location** = provenance of the core from which seeds were generated (all seeds from Corn Island which is Core_Location = 2 in Figure 1 and Table 1 in Vahsen et al.)
 * **Tetra_Viable** = The number of seeds that were determined to be viable given tetrazolium testing
 * **Seeds_Tested** = The number of seeds that were tested to see if they were viable using tetrazolium testing
