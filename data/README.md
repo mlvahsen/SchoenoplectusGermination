@@ -18,3 +18,12 @@ The metadata for the two data files in this folder are as follows:
 * **Photo2** = indicator variable to test for the effect of Photo 2 vs Photo 3 (reference level)
 * **Germinated** = the number of seeds that germinated for a given unique trial
 * **Seeds_Planted** = the number of seeds that were planted for a given unique trial
+
+## tetrazolium_data.csv
+Note: all seeds that underwent tetrazolium testing had failed to germinate in a germination trial
+* **unique_id** = unique id for a core and layer from which seeds were recovered from (_A = 
+* **Core_Location** = provenance of the core from which seeds were generated (all seeds from Corn Island which is Core_Location = 2 in Figure 1 and Table 1 in Vahsen et al.)
+* **Tetra_Viable** = The number of seeds that were determined to be viable given tetrazolium testing
+* **Seeds_Tested** = The number of seeds that were tested to see if they were viable using tetrazolium testing
+* **Depth** = depth (cm) from the marsh surface to the top of a slice of a soil core from which the seeds were recovered from
+* **Assay_Num** = one of two tetrazolium testing assays
