@@ -32,14 +32,12 @@ thin_interval <- 3 # sample only every X sample from each chain (reduces autocor
 # Get predicted values and plot against observed
 get_pred_obs <- function(coda_object, data, sum_stats, n_iter, n_chains, reps, ylab){
   coda_object %>%  
-    ggs(family = "mu") %>%
-    mutate(Seeds_Planted = rep(data$Seeds_Planted, each = reps)) %>% 
+    ggs(family = "y_new") %>%
     group_by(Parameter) %>%
-    summarize(
-      predicted = mean(value * Seeds_Planted),
-      lower = quantile(value * Seeds_Planted, 0.025),
-      upper = quantile(value * Seeds_Planted, 0.975)
-    ) %>%
+        summarize(
+        predicted = mean(value),
+        lower = quantile(value, 0.025),
+        upper = quantile(value, 0.975)) %>% 
     mutate(observed = data$Germinated) -> sum_stats
   
   data$pred_mean <- sum_stats$predicted
@@ -50,13 +48,13 @@ get_pred_obs <- function(coda_object, data, sum_stats, n_iter, n_chains, reps, y
     geom_pointrange(aes(ymin = lower, ymax = upper), 
                     position=position_jitter(width=0.3), alpha = 0.3, size = 0.1) +
     geom_abline(aes(intercept = 0, slope = 1)) +
-    scale_x_continuous(breaks = 0:10) + ylim(-4,40) +
+    scale_x_continuous(breaks = 0:10) + ylim(-4,90) +
     geom_vline(aes(xintercept = 0.5), linetype = "dashed", color = "gray87") +
     geom_vline(aes(xintercept = 1.5), linetype = "dashed", color = "gray87") +
     geom_vline(aes(xintercept = 2.5), linetype = "dashed", color = "gray87") +
     geom_vline(aes(xintercept = 3.5), linetype = "dashed", color = "gray87") +
     geom_vline(aes(xintercept = 4.5), linetype = "dashed", color = "gray87") +
-    xlab("") + ylab("") + stat_n_text(size = 2, y.pos = 38) + theme(panel.border = element_rect(colour = "gray47", fill=NA, size=1, linetype = "dashed"),
+    xlab("") + ylab("") + stat_n_text(size = 2, y.pos = 88) + theme(panel.border = element_rect(colour = "gray47", fill=NA, size=1, linetype = "dashed"),
                                                 panel.background = element_rect(fill = "transparent", color = NA),
                                                 plot.background = element_rect(fill = "transparent", color = NA))
   
@@ -64,12 +62,12 @@ get_pred_obs <- function(coda_object, data, sum_stats, n_iter, n_chains, reps, y
     ggplot(aes(x = observed, y = predicted)) +
     geom_pointrange(aes(ymin = lower, ymax = upper), alpha = 0.5) +
     geom_abline(aes(intercept = 0, slope = 1)) +
-    ylab(ylab) + ylim(-1,155) +
+    ylab(ylab) + ylim(-1,250) +
     xlab("observed number of seeds germinated") +
-    geom_rect(aes(xmin = -1, xmax = 5.5, ymin = -1, ymax = 40), fill = "NA", color = "gray47",
+    geom_rect(aes(xmin = -1, xmax = 5.5, ymin = -1, ymax = 90), fill = "NA", color = "gray47",
               linetype = "dashed") +
-    geom_segment(aes(x = 0, y = 40, xend = 11, yend = 113), linetype = "dashed", color = "gray47") +
-    geom_segment(aes(x = 9, y = 40, xend = 80, yend = 113), linetype = "dashed", color = "gray47")
+    geom_segment(aes(x = 0, y = 90, xend = 11, yend = 185), linetype = "dashed", color = "gray47") +
+    geom_segment(aes(x = 5, y = 90, xend = 75, yend = 185), linetype = "dashed", color = "gray47")
   
   ggdraw() +
     draw_plot(full_3a) +
@@ -243,58 +241,54 @@ give_me_R2 <- function(preds,actual){
 }
 
 Model1_coda %>%  
-  ggs(family = "mu") %>%
-  mutate(Seeds_Planted = rep(germ_all_final$Seeds_Planted, each = 8001)) %>% 
+  ggs(family = "y_new") %>% 
   group_by(Parameter) %>%
   summarize(
-    predicted = mean(value * Seeds_Planted),
-    lower = quantile(value * Seeds_Planted, 0.025),
-    upper = quantile(value * Seeds_Planted, 0.975)
+    predicted = mean(value),
+    lower = quantile(value, 0.025),
+    upper = quantile(value, 0.975)
   ) %>%
   mutate(observed = germ_all_final$Germinated) -> Model1_PO
 
 Model2_coda %>%  
-  ggs(family = "mu") %>%
-  mutate(Seeds_Planted = rep(germ_all_final$Seeds_Planted, each = 8001)) %>% 
+  ggs(family = "y_new") %>% 
   group_by(Parameter) %>%
   summarize(
-    predicted = mean(value * Seeds_Planted),
-    lower = quantile(value * Seeds_Planted, 0.025),
-    upper = quantile(value * Seeds_Planted, 0.975)
+    predicted = mean(value),
+    lower = quantile(value, 0.025),
+    upper = quantile(value, 0.975)
   ) %>%
   mutate(observed = germ_all_final$Germinated) -> Model2_PO
 
 Model3_coda %>%  
-  ggs(family = "mu") %>%
-  mutate(Seeds_Planted = rep(germ_all_final$Seeds_Planted, each = 8001)) %>% 
+  ggs(family = "y_new") %>% 
   group_by(Parameter) %>%
   summarize(
-    predicted = mean(value * Seeds_Planted),
-    lower = quantile(value * Seeds_Planted, 0.025),
-    upper = quantile(value * Seeds_Planted, 0.975)
+    predicted = mean(value),
+    lower = quantile(value, 0.025),
+    upper = quantile(value, 0.975)
   ) %>%
   mutate(observed = germ_all_final$Germinated) -> Model3_PO
 
 Model4_coda %>%  
-  ggs(family = "mu") %>%
-  mutate(Seeds_Planted = rep(germ_all_final$Seeds_Planted, each = 8001)) %>% 
+  ggs(family = "y_new") %>% 
   group_by(Parameter) %>%
   summarize(
-    predicted = mean(value * Seeds_Planted),
-    lower = quantile(value * Seeds_Planted, 0.025),
-    upper = quantile(value * Seeds_Planted, 0.975)
+    predicted = mean(value),
+    lower = quantile(value, 0.025),
+    upper = quantile(value, 0.975)
   ) %>%
   mutate(observed = germ_all_final$Germinated) -> Model4_PO
 
 give_me_R2(Model1_PO$predicted, Model1_PO$observed)
-# 0.9116979
+# 0.9118568
 
 give_me_R2(Model2_PO$predicted, Model2_PO$observed)
-# 0.9086737
+# 0.8899808
 
 give_me_R2(Model3_PO$predicted, Model3_PO$observed)
-# 0.8663605
+# 0.8689081
 
 give_me_R2(Model4_PO$predicted, Model4_PO$observed)
-# 0.8670952
+# 0.8658285
 
