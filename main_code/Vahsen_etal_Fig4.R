@@ -414,7 +414,7 @@ a <- tibble(value = c(temp1_pred, temp2_pred, temp3_pred, temp4_pred),
   ggplot(aes(x = factor(temp), y = value)) +
   geom_violin(draw_quantiles = c(0.025, 0.975), fill = "gray77",  color = "gray27") + 
   stat_summary(fun = median, geom = "point", size = 3, color = "gray27") +
-  ylab("P(germination success at 0 cm)") +
+  ylab("P(germination success)") +
   xlab("temperature (°C)") + ylim(0,0.9)
 
 b <- tibble(value = c(media1_pred, media2_pred, media3_pred),
@@ -430,7 +430,7 @@ c <- tibble(value = c(treatment0_pred, treatment1_pred),
   ggplot(aes(x = treatment, y = value)) +
   geom_violin(draw_quantiles = c(0.025, 0.975), fill = "gray77",  color = "gray27") + 
   stat_summary(fun = median, geom = "point", size = 3, color = "gray27") + 
-  ylab("P(germination success at 0 cm)") +
+  ylab("P(germination success)") +
   xlab("pre-treatment")+ ylim(0,0.9)
 
 d <- tibble(value = c(photoperiod3_pred, photoperiod1_pred, photoperiod2_pred),
