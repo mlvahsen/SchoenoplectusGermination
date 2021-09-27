@@ -7,7 +7,7 @@ The metadata for the two data files in this folder are as follows:
 * **Assay_Date** = year in which the experimental assay was conducted (2003-2019)
 * **Temperature** = temperature regime that the seeds underwent (1 = constant 30&deg;C, 2 = fluctuating 20/15&deg;C, 3 = fluctuating 27/15&deg;C, 4 = constant 25&deg;C). Note: temperatures fluctuating in sync with photoperiod daytime/nighttime schedules.
 * **Media** = medium on which seeds were germinated (1 = sand/soil mix, 2 = sand, 3 = growth media [Murashige and Skoog salt and vitamin, sucrose, and agar mixture]).
-* **Photoperiod** = number of daytime and nighttime hours that seeds experiments in an experiment (1 = 12 daytime/12 nighttime, 2 = all dark, 3 = 15 daytime/9 nighttime)
+* **Photoperiod** = number of daytime and nighttime hours that seeds experiments in an experiment (1 = 15 daytime/9 nighttime, 2 = all dark, 3 = 12 daytime/12 nighttime)
 * **Treatment** = indicator variable that indicates whether seeds experienced a pre-treatment (see Supplementary Materials for details) or not (0 = no, 1 = yes)
 * **Media1** = indicator variable to test for the effect of Media 2 vs Media 1 (reference level)
 * **Media2** = indicator variable to test for the effect of Media 3 vs Media 1 (reference level)
