@@ -5,7 +5,7 @@
 ## Preliminaries ####
 # Load libraries
 library(tidyverse);library(patchwork);library(ggmcmc)
-library(EnvStats);library(cowplot); library(here)
+library(EnvStats);library(cowplot); library(here); library(spatstat)
 
 # Set ggplot theme
 theme_set(theme_classic())
@@ -122,25 +122,25 @@ germ_all_final %>%
 
 out <- array(NA, c(nrow(pred_betas), length(xa_std_pred), 11))
 for (i in 1:nrow(pred_betas)){
-  out[i,,7] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred) # Temp = 3, Media = 1, Treatment = 0, Photo = 3
-  out[i,,8] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b4[i]+ pred_betas$b10[i]) #  Temp = 3, Media = 2, Treatment = 0, Photo = 1
-  out[i,,3] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b4[i] + pred_betas$b6[i] + pred_betas$b10[i]) # Temp = 1, Media = 2, Treatment = 0, Photo = 1
-  out[i,,5] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b4[i] + pred_betas$b7[i] + pred_betas$b10[i]) # Temp = 2, Media = 2, Treatment = 0, Photo = 1
-  out[i,,10] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b4[i] + pred_betas$b8[i] + pred_betas$b10[i]) # Temp = 4, Media = 2, Treatment = 0, Photo = 1
-  out[i,,11] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b5[i] + pred_betas$b8[i] + pred_betas$b10[i]) # Temp = 4, Media = 3, Treatment = 0, Photo = 1
-  out[i,,1] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b6[i] + pred_betas$b10[i]) # Temp = 1, Media = 1, Treatment = 0, Photo = 1
-  out[i,,2] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b6[i] + pred_betas$b9[i] + pred_betas$b10[i]) # Temp = 1, Media = 1, Treatment = 1, Photo = 1
-  out[i,,4] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b4[i] + pred_betas$b6[i] + pred_betas$b11[i]) # Temp = 1, Media = 2, Treatment = 0, Photo = 2
-  out[i,,6] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b4[i] + pred_betas$b7[i] + pred_betas$b11[i]) # Temp = 2, Media = 2, Treatment = 0, Photo = 2
-  out[i,,9] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b4[i]+ pred_betas$b11[i]) #  Temp = 3, Media = 2, Treatment = 0, Photo = 2
+  out[i,,7] <- (pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred) # Temp = 3, Media = 1, Treatment = 0, Photo = 3
+  out[i,,8] <- (pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b4[i]+ pred_betas$b10[i]) #  Temp = 3, Media = 2, Treatment = 0, Photo = 1
+  out[i,,3] <- (pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b4[i] + pred_betas$b6[i] + pred_betas$b10[i]) # Temp = 1, Media = 2, Treatment = 0, Photo = 1
+  out[i,,5] <- (pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b4[i] + pred_betas$b7[i] + pred_betas$b10[i]) # Temp = 2, Media = 2, Treatment = 0, Photo = 1
+  out[i,,10] <- (pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b4[i] + pred_betas$b8[i] + pred_betas$b10[i]) # Temp = 4, Media = 2, Treatment = 0, Photo = 1
+  out[i,,11] <- (pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b5[i] + pred_betas$b8[i] + pred_betas$b10[i]) # Temp = 4, Media = 3, Treatment = 0, Photo = 1
+  out[i,,1] <- (pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b6[i] + pred_betas$b10[i]) # Temp = 1, Media = 1, Treatment = 0, Photo = 1
+  out[i,,2] <- (pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b6[i] + pred_betas$b9[i] + pred_betas$b10[i]) # Temp = 1, Media = 1, Treatment = 1, Photo = 1
+  out[i,,4] <- (pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b4[i] + pred_betas$b6[i] + pred_betas$b11[i]) # Temp = 1, Media = 2, Treatment = 0, Photo = 2
+  out[i,,6] <- (pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b4[i] + pred_betas$b7[i] + pred_betas$b11[i]) # Temp = 2, Media = 2, Treatment = 0, Photo = 2
+  out[i,,9] <- (pred_betas$b0[i] + pred_betas$b1[i] * xa_std_pred + pred_betas$b4[i]+ pred_betas$b11[i]) #  Temp = 3, Media = 2, Treatment = 0, Photo = 2
 }
 
 pred_averages <- apply(out, c(1,2), weighted.mean, w = weights)
 pred_quantiles <- apply(pred_averages, 2, quantile, probs = c(0.025,0.5,0.975))
 
-tibble(median = pred_quantiles[2,],
-       lower = pred_quantiles[1,],
-       upper = pred_quantiles[3,],
+tibble(median = plogis(pred_quantiles[2,]),
+       lower = plogis(pred_quantiles[1,]),
+       upper = plogis(pred_quantiles[3,]),
        xa_pred = xa_pred,
        depth = seq(range(germ_all_final$Depth_Top)[1], range(germ_all_final$Depth_Top)[2], length.out = nrow(germ_all_final))) %>% 
   ggplot(aes(x = xa_pred, y = median)) +
@@ -175,29 +175,29 @@ tibble(depth = pred_xa_std$depth,
 
 out_fortext <- array(NA, c(nrow(pred_betas), length(age_std_fortext), 11))
 for (i in 1:nrow(pred_betas)){
-  out_fortext[i,,7] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext) # Temp = 3, Media = 1, Treatment = 0, Photo = 3
-  out_fortext[i,,8] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b4[i]+ pred_betas$b10[i]) #  Temp = 3, Media = 2, Treatment = 0, Photo = 1
-  out_fortext[i,,3] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b4[i] + pred_betas$b6[i] + pred_betas$b10[i]) # Temp = 1, Media = 2, Treatment = 0, Photo = 1
-  out_fortext[i,,5] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b4[i] + pred_betas$b7[i] + pred_betas$b10[i]) # Temp = 2, Media = 2, Treatment = 0, Photo = 1
-  out_fortext[i,,10] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b4[i] + pred_betas$b8[i] + pred_betas$b10[i]) # Temp = 4, Media = 2, Treatment = 0, Photo = 1
-  out_fortext[i,,11] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b5[i] + pred_betas$b8[i] + pred_betas$b10[i]) # Temp = 4, Media = 3, Treatment = 0, Photo = 1
-  out_fortext[i,,1] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b6[i] + pred_betas$b10[i]) # Temp = 1, Media = 1, Treatment = 0, Photo = 1
-  out_fortext[i,,2] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b6[i] + pred_betas$b9[i] + pred_betas$b10[i]) # Temp = 1, Media = 1, Treatment = 1, Photo = 1
-  out_fortext[i,,4] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b4[i] + pred_betas$b6[i] + pred_betas$b11[i]) # Temp = 1, Media = 2, Treatment = 0, Photo = 2
-  out_fortext[i,,6] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b4[i] + pred_betas$b7[i] + pred_betas$b11[i]) # Temp = 2, Media = 2, Treatment = 0, Photo = 2
-  out_fortext[i,,9] <- plogis(pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b4[i]+ pred_betas$b11[i]) #  Temp = 3, Media = 2, Treatment = 0, Photo = 2
+  out_fortext[i,,7] <- (pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext) # Temp = 3, Media = 1, Treatment = 0, Photo = 3
+  out_fortext[i,,8] <- (pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b4[i]+ pred_betas$b10[i]) #  Temp = 3, Media = 2, Treatment = 0, Photo = 1
+  out_fortext[i,,3] <- (pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b4[i] + pred_betas$b6[i] + pred_betas$b10[i]) # Temp = 1, Media = 2, Treatment = 0, Photo = 1
+  out_fortext[i,,5] <- (pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b4[i] + pred_betas$b7[i] + pred_betas$b10[i]) # Temp = 2, Media = 2, Treatment = 0, Photo = 1
+  out_fortext[i,,10] <- (pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b4[i] + pred_betas$b8[i] + pred_betas$b10[i]) # Temp = 4, Media = 2, Treatment = 0, Photo = 1
+  out_fortext[i,,11] <- (pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b5[i] + pred_betas$b8[i] + pred_betas$b10[i]) # Temp = 4, Media = 3, Treatment = 0, Photo = 1
+  out_fortext[i,,1] <- (pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b6[i] + pred_betas$b10[i]) # Temp = 1, Media = 1, Treatment = 0, Photo = 1
+  out_fortext[i,,2] <- (pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b6[i] + pred_betas$b9[i] + pred_betas$b10[i]) # Temp = 1, Media = 1, Treatment = 1, Photo = 1
+  out_fortext[i,,4] <- (pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b4[i] + pred_betas$b6[i] + pred_betas$b11[i]) # Temp = 1, Media = 2, Treatment = 0, Photo = 2
+  out_fortext[i,,6] <- (pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b4[i] + pred_betas$b7[i] + pred_betas$b11[i]) # Temp = 2, Media = 2, Treatment = 0, Photo = 2
+  out_fortext[i,,9] <- (pred_betas$b0[i] + pred_betas$b1[i] * age_std_fortext + pred_betas$b4[i]+ pred_betas$b11[i]) #  Temp = 3, Media = 2, Treatment = 0, Photo = 2
 }
 
 pred_averages_fortext <- apply(out_fortext, c(1,2), weighted.mean, w = weights)
 pred_quantiles_fortext <- apply(pred_averages_fortext, 2, quantile, probs = c(0.025,0.975))
 
 # These are the predicted germination probabilities (quantiles and median)
-predicted_means <- apply(pred_averages_fortext, 2, mean)
-predicted_means
-# 0.24665673 0.11075368 0.03079529
-pred_quantiles_fortext
-# 2.5%  0.1675750 0.07033728 0.01615977
-# 97.5% 0.3356096 0.15892550 0.05068516
+predicted_medians <- plogis(apply(pred_averages_fortext, 2, median))
+predicted_medians
+# 0.21803969 0.09298733 0.02455019
+plogis(pred_quantiles_fortext)
+# 2.5%  0.1410249 0.05827305 0.01322760
+# 97.5% 0.3128686 0.13911843 0.04262377
 
 # Calculate the CIs for Model 4 parameter to show that there is no benefit of
 # adding zero-inflation to the beta-binomial model
@@ -230,7 +230,7 @@ ggs(Model3_coda) %>%
             upper = quantile(value, 0.975)) 
 # mean lower upper
 # <dbl> <dbl> <dbl>
-# -1.32 -1.63 -1.04
+# -1.32 -1.62 -1.04
 
 ## Calculate R2 for each model ####
 give_me_R2 <- function(preds,actual){

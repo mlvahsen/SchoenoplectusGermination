@@ -82,12 +82,12 @@ germ_all %>%
 # Number of seeds planted from the top 10cm
 germ_all %>% 
   filter(Depth_Top < 10) %>% 
-  summarize(sum(Seeds_Planted)) # 3739
+  summarize(sum(Seeds_Planted)) # 3808
 
 # Number of seeds planted from greater than 30 cm
 germ_all %>% 
   filter(Depth_Top > 30) %>% 
-  summarize(sum(Seeds_Planted)) # 194
+  summarize(sum(Seeds_Planted)) # 120
 
 # Min and max average germination success by Assay Number
 germ_all %>% 
@@ -140,7 +140,7 @@ germ_all_model <-list(N = nrow(germ_all_final), # total number of observations
 
 ## Fit binomial likelihood with no zero-inflation (Model 1) ####
 # Binomial; no zero inflation
-Model1_fit <- stan(file = "code/model1_stan.stan",
+Model1_fit <- stan(file = model1_stan,
                             data = germ_all_model,
                             iter = n_iter,
                             chains = n_chains,
@@ -151,7 +151,7 @@ Model1_fit <- stan(file = "code/model1_stan.stan",
 ## Fit binomial likelihood with zero-inflation (Model 2) ####
 
 # Binomial with inflation
-Model2_fit <- stan(file = 'code/model2_stan.stan',
+Model2_fit <- stan(file = model2_stan,
                    data = germ_all_model,
                    iter = n_iter,
                    chains = n_chains,
@@ -160,7 +160,7 @@ Model2_fit <- stan(file = 'code/model2_stan.stan',
                    control = list(max_treedepth = 15, adapt_delta=0.99)) 
 
 ## Fit beta-binomial likelihood with no zero-inflation (Model 3) ####
-Model3_fit <- stan(file = 'code/model3_stan.stan',
+Model3_fit <- stan(model_code = model3_stan,
                    data = germ_all_model,
                    iter = n_iter,
                    chains = n_chains,
@@ -169,7 +169,7 @@ Model3_fit <- stan(file = 'code/model3_stan.stan',
                    control = list(max_treedepth = 15, adapt_delta=0.99))
 
 ## Fit beta-binomial likelihood with zero-inflation (Model 4) ####
-Model4_fit <- stan(file = 'code/model4_stan.stan',
+Model4_fit <- stan(file = model4_stan,
                    data = germ_all_model,
                    iter = n_iter,
                    chains = n_chains,
