@@ -140,7 +140,7 @@ germ_all_model <-list(N = nrow(germ_all_final), # total number of observations
 
 ## Fit binomial likelihood with no zero-inflation (Model 1) ####
 # Binomial; no zero inflation
-Model1_fit <- stan(file = model1_stan,
+Model1_fit <- stan(model_code = model1_stan,
                             data = germ_all_model,
                             iter = n_iter,
                             chains = n_chains,
@@ -151,7 +151,7 @@ Model1_fit <- stan(file = model1_stan,
 ## Fit binomial likelihood with zero-inflation (Model 2) ####
 
 # Binomial with inflation
-Model2_fit <- stan(file = model2_stan,
+Model2_fit <- stan(model_code = model2_stan,
                    data = germ_all_model,
                    iter = n_iter,
                    chains = n_chains,
@@ -169,14 +169,13 @@ Model3_fit <- stan(model_code = model3_stan,
                    control = list(max_treedepth = 15, adapt_delta=0.99))
 
 ## Fit beta-binomial likelihood with zero-inflation (Model 4) ####
-Model4_fit <- stan(file = model4_stan,
+Model4_fit <- stan(model_code = model4_stan,
                    data = germ_all_model,
                    iter = n_iter,
                    chains = n_chains,
                    warmup = n_burnin,
                    thin = thin_interval,
                    control = list(max_treedepth = 15, adapt_delta=0.99))
-
 
 
 ## Model comparison ####

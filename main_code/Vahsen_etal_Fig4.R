@@ -62,349 +62,30 @@ photoperiod3_pred <- NULL
 # treatments
 
 for(i in 1:nrow(pred_betas)){
-  temp3_pred[i] <- mean(# photoperiod = 3
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]), # Media 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]), # Media 3
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min), 
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b9[i]),# Media 2 + Treatment 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b9[i]),# Media 3 + Treatment 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]),# Treatment 1
-                        # photoperiod = 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b10[i]),# Media 2 + Photo 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b10[i]),# Media 3 + Photo 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b10[i]), # Photo 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b9[i]+pred_betas$b10[i]), # Media 2 + Treatment 1 + Photo 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b9[i]+pred_betas$b10[i]), # Media 3 + Treatment 1 + Photo 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b10[i]), # Treatment 1 + Photo 1
-                        # photoperiod = 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b11[i]), # Media 2 + Photo 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b11[i]),# Media 3 + Photo 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b11[i]),# Photo 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b9[i]+pred_betas$b11[i]),# Media 2 + Treatment 1 + Photo 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b9[i]+pred_betas$b11[i]),# Media 2 + Treatment 1 + Photo 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b11[i]))# Treatment 1 + Photo 2
-  
-  temp1_pred[i] <- mean(# photoperiod = 3
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b6[i]),# Media 2 + Temp 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b6[i]),# Media 3 + Temp 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]),# Temp 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b9[i]+pred_betas$b6[i]),# Media 2 + Treatment 1 + Temp 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b9[i]+pred_betas$b6[i]),# Media 3 + Treatment 1 + Temp 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]),# Treatment 1 + Temp 1
-    # photoperiod = 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b10[i]+pred_betas$b6[i]),# Media 2 + Photo 1 + Temp 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b10[i]+pred_betas$b6[i]),# Media 3 + Photo 1 + Temp 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b10[i]+pred_betas$b6[i]),# Photo 1 + Temp 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b9[i]+pred_betas$b10[i]+pred_betas$b6[i]), # Media 2 + Treatment 1 + Photo 1 + Temp 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b9[i]+pred_betas$b10[i]+pred_betas$b6[i]),# Media 3 + Treatment 1 + Photo 1 + Temp 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b10[i]+pred_betas$b6[i]),# Treatment 1 + Photo 1 + Temp 1
-    # photoperiod = 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b11[i]+pred_betas$b6[i]),# Media 2 + Photo 2 + Temp 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b11[i]+pred_betas$b6[i]),# Media 3 + Photo 2 + Temp 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b11[i]+pred_betas$b6[i]),# Photo 1 + Temp 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b9[i]+pred_betas$b11[i]+pred_betas$b6[i]),# Media 2 + Treatment 1 + Photo 2 + Temp 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b9[i]+pred_betas$b11[i]+pred_betas$b6[i]),# Media 3 + Treatment 1 + Photo 2 + Temp 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b11[i]+pred_betas$b6[i]))# Treatment 1 + Photo 2 + Temp 1
-  
-  temp2_pred[i] <- mean(# photoperiod = 3
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b7[i]), # Media 2 + Temp 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b7[i]),# Media 3 + Temp 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]),# Temp 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b9[i]+pred_betas$b7[i]),# Media 2 +Treatment 1+ Temp 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b9[i]+pred_betas$b7[i]),# Media 3 +Treatment 1+ Temp 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]),# Treatment 1+ Temp 2
-    # photoperiod = 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b10[i]+pred_betas$b7[i]),# Media 2 + Photo 1 + Temp 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b10[i]+pred_betas$b7[i]),# Media 3 + Photo 1 + Temp 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b10[i]+pred_betas$b7[i]),# Photo 1 + Temp 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b9[i]+pred_betas$b10[i]+pred_betas$b7[i]),# Media 2 + Treatment 1 + Photo 1 + Temp 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b9[i]+pred_betas$b10[i]+pred_betas$b7[i]),# Media 3 + Treatment 1 + Photo 1 + Temp 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b10[i]+pred_betas$b7[i]),# Media 2 + Treatment 1 + Photo 1 + Temp 2
-    # photoperiod = 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b11[i]+pred_betas$b7[i]),# Media 2 + Photo 2 + Temp 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b11[i]+pred_betas$b7[i]),# Media 3 + Photo 2 + Temp 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b11[i]+pred_betas$b7[i]),# Photo 2 + Temp 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b9[i]+pred_betas$b11[i]+pred_betas$b7[i]),# Media 2 + Treatment 1 + Photo 2 + Temp 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b9[i]+pred_betas$b11[i]+pred_betas$b7[i]),# Media 3 + Treatment 1 + Photo 2 + Temp 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b11[i]+pred_betas$b7[i])) # Treatment 1 + Photo 2 + Temp 2
-  
-  temp4_pred[i] <- mean(# photoperiod = 3
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b8[i]),# Media 2 + Temp 4
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b8[i]),# Media 3 + Temp 4
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]), # Temp 4
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b9[i]+pred_betas$b8[i]),# Media 2 +Treatment 1+ Temp 4
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b9[i]+pred_betas$b8[i]),# Media 3 +Treatment 1+ Temp 4
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]),# Treatment 1+ Temp 2
-    # photoperiod = 1
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b10[i]+pred_betas$b8[i]),# Media 2 +Photo 1+ Temp 4
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b10[i]+pred_betas$b8[i]),# Media 3 +Photo 1+ Temp 4
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b10[i]+pred_betas$b8[i]),# Photo 1+ Temp 4
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b9[i]+pred_betas$b10[i]+pred_betas$b8[i]),# Media 2 + Treatment 1 + Photo 1+ Temp 4
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b9[i]+pred_betas$b10[i]+pred_betas$b8[i]),# Media 3 + Treatment 1 + Photo 1+ Temp 4
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b10[i]+pred_betas$b8[i]),# Treatment 1 + Photo 1+ Temp 4
-    # photoperiod = 2
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b11[i]+pred_betas$b8[i]),# Media 2 +Photo 2+ Temp 4
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b11[i]+pred_betas$b8[i]),# Media 3 +Photo 2+ Temp 4
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b11[i]+pred_betas$b8[i]),# Photo 2+ Temp 4
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b9[i]+pred_betas$b11[i]+pred_betas$b8[i]),# Media 2 + Treatment 1 + Photo 2+ Temp 4
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b9[i]+pred_betas$b11[i]+pred_betas$b8[i]),# Media 3 + Treatment 1 + Photo 2+ Temp 4
-    (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b11[i]+pred_betas$b8[i]))# Treatment 1 + Photo 2+ Temp 4
-
+  temp3_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min)
+  temp1_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b6[i])
+  temp2_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b7[i])
+  temp4_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b8[i])
 }
 
 # Calculate average values across other treatments except for media
 for(i in 1:nrow(pred_betas)){
-  media3_pred[i] <- mean((pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min), 
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]), # Temp = 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]), # Temp = 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]),# Temp = 4
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]),# Treatment = 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]),# Treatment = 1, Temp = 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]),# Treatment = 1, Temp = 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]),# Treatment = 1, Temp = 4
-                        # photoperiod = 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b10[i]),# Photo = 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b10[i]),# Temp = 1, Photo = 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b10[i]),# Temp = 2, Photo = 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b10[i]),# Temp = 4, Photo = 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b10[i]),# Treatment = 1, Photo = 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b10[i]),# Treatment = 1, Temp = 1, Photo = 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b10[i]),# Treatment = 1, Temp = 2, Photo = 1
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b10[i]),# Treatment = 1, Temp = 4, Photo = 1
-                        # photoperiod = 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b11[i]),# Photo = 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b11[i]),# Temp = 1, Photo = 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b11[i]),# Temp = 2, Photo = 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b11[i]),# Temp = 4, Photo = 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b11[i]),# Treatment = 1, Photo = 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b11[i]),# Treatment = 1, Temp = 1, Photo = 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b11[i]),# Treatment = 1, Temp = 2, Photo = 2
-                        (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b11[i]))# Treatment = 1, Temp = 4, Photo = 2
-  
-  media1_pred[i] <- mean((pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]),# Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b4[i]),# Temp = 1, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b4[i]),# Temp = 2, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b4[i]),# Temp = 4, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b4[i]),# Treatment = 1, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b4[i]),# Treatment = 1, Temp = 1,Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b4[i]),# Treatment = 1, Temp = 2,Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b4[i]),# Treatment = 1, Temp = 4,Media = 2
-                         # photoperiod = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b10[i]+pred_betas$b4[i]),# Photo = 1, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b10[i]+pred_betas$b4[i]),# Temp = 1, Photo = 1, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b10[i]+pred_betas$b4[i]),# Temp = 2, Photo = 1, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b10[i]+pred_betas$b4[i]),# Temp = 4, Photo = 1, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b10[i]+pred_betas$b4[i]),# Treatment = 1, Photo = 1, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b10[i]+pred_betas$b4[i]),# Treatment = 1, Temp = 1, Photo = 1, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b10[i]+pred_betas$b4[i]),# Treatment = 1, Temp = 2, Photo = 1, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b10[i]+pred_betas$b4[i]),# Treatment = 1, Temp = 4, Photo = 1, Media = 2
-                         # photoperiod = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b11[i]+pred_betas$b4[i]),# Photo = 2, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b11[i]+pred_betas$b4[i]),# Temp = 1, Photo = 2, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b11[i]+pred_betas$b4[i]),# Temp = 2, Photo = 2, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b11[i]+pred_betas$b4[i]),# Temp = 4, Photo = 2, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b11[i]+pred_betas$b4[i]),# Treatment = 1, Photo = 2, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b11[i]+pred_betas$b4[i]),# Treatment = 1, Temp = 1, Photo = 2, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b11[i]+pred_betas$b4[i]),# Treatment = 1, Temp = 2, Photo = 2, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b11[i]+pred_betas$b4[i]))# Treatment = 1, Temp = 4, Photo = 2, Media = 2
-  
-  media2_pred[i] <- mean((pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]), # Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b5[i]), # Temp = 1, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b5[i]),# Temp = 2, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b5[i]),# Temp = 4, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b5[i]),# Treatment = 1, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b5[i]),# Treatment = 1, Temp = 1, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b5[i]),# Treatment = 1, Temp = 2, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b5[i]),# Treatment = 1, Temp = 4, Media = 3
-                         # photoperiod = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b10[i]+pred_betas$b5[i]),# Photo = 1, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b10[i]+pred_betas$b5[i]),# Temp = 1, Photo = 1, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b10[i]+pred_betas$b5[i]),# Temp = 2, Photo = 1, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b10[i]+pred_betas$b5[i]),# Temp = 4, Photo = 1, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b10[i]+pred_betas$b5[i]),# Treatment = 1, Photo = 1, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b10[i]+pred_betas$b5[i]),# Treatment = 1,Temp = 1, Photo = 1, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b10[i]+pred_betas$b5[i]),# Treatment = 1,Temp = 2, Photo = 1, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b10[i]+pred_betas$b5[i]),# Treatment = 1,Temp = 4, Photo = 1, Media = 3
-                         # photoperiod = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b11[i]+pred_betas$b5[i]),# Photo = 2, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b11[i]+pred_betas$b5[i]),# Temp = 1, Photo = 2, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b11[i]+pred_betas$b5[i]),# Temp = 2, Photo = 2, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b11[i]+pred_betas$b5[i]),# Temp = 4, Photo = 2, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b11[i]+pred_betas$b5[i]),# Treatment = 1, Photo = 2, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b11[i]+pred_betas$b5[i]),# Treatment = 1, Temp = 1, Photo = 2, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b11[i]+pred_betas$b5[i]),# Treatment = 1, Temp = 2, Photo = 2, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b11[i]+pred_betas$b5[i]))# Treatment = 1, Temp = 4, Photo = 2, Media = 3
-  
-
+  media3_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min)
+  media1_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b4)
+  media2_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b5)
 }
 
 # Calculate average values across other treatments except for pre-treatment
 for(i in 1:nrow(pred_betas)){
-  treatment0_pred[i] <- mean((pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min),
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]), # Temp = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]), # Temp = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]),# Temp = 4
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]), # Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b6[i]), # Media = 2, Temp = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b7[i]),# Media = 2, Temp = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b8[i]),# Media = 2, Temp = 4
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]),# Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b6[i]),# Media = 3, Temp = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b7[i]),# Media = 3, Temp = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b8[i]),# Media = 3, Temp = 4
-                         # photoperiod = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b10[i]),# Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b10[i]),# Temp = 1, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b10[i]),# Temp = 2, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b10[i]),# Temp = 4, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b10[i]),# Media = 2, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b6[i]+pred_betas$b10[i]),# Media = 2,Temp = 1, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b7[i]+pred_betas$b10[i]),# Media = 2,Temp = 2, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b8[i]+pred_betas$b10[i]),# Media = 2,Temp = 4, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b10[i]),# Media = 3, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b6[i]+pred_betas$b10[i]),# Media = 3, Temp = 1, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b7[i]+pred_betas$b10[i]),# Media = 3, Temp = 2, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b8[i]+pred_betas$b10[i]),# Media = 3, Temp = 3, Photo = 1
-                         # photoperiod = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b11[i]), # Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b11[i]), # Temp = 1, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b11[i]),# Temp = 2, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b11[i]),# Temp = 3, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b11[i]),# Media = 2, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b6[i]+pred_betas$b11[i]), # Media = 2, Temp = 1, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b7[i]+pred_betas$b11[i]),# Media = 2, Temp = 2, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b8[i]+pred_betas$b11[i]),# Media = 2, Temp = 4, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b11[i]),# Media = 3, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b6[i]+pred_betas$b11[i]),# Media = 3, Temp = 1, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b7[i]+pred_betas$b11[i]),# Media = 3, Temp = 2, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b8[i]+pred_betas$b11[i]))# Media = 3, Temp = 4, Photo = 2
-  
-  treatment1_pred[i] <- mean((pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]), # Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b9[i]),# Temp = 1, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b9[i]),# Temp = 2, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b9[i]),# Temp = 4, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b9[i]),# Media = 2, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b6[i]+pred_betas$b9[i]),# Media = 2, Temp = 1, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b7[i]+pred_betas$b9[i]),# Media = 2, Temp = 2, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b8[i]+pred_betas$b9[i]),# Media = 2, Temp = 4, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b9[i]),# Media = 3, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b6[i]+pred_betas$b9[i]),# Media = 3, Temp = 1, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b7[i]+pred_betas$b9[i]),# Media = 3, Temp = 2, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b8[i]+pred_betas$b9[i]),# Media = 3, Temp = 4, Treatment = 1
-                             # photoperiod = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b10[i]+pred_betas$b9[i]),# Photo = 1, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b10[i]+pred_betas$b9[i]),# Temp = 1, Photo = 1, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b10[i]+pred_betas$b9[i]),# Temp = 2, Photo = 1, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b10[i]+pred_betas$b9[i]),# Temp = 4, Photo = 1, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b10[i]+pred_betas$b9[i]),# Media = 2, Photo = 1, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b6[i]+pred_betas$b10[i]+pred_betas$b9[i]),# Media = 2, Temp = 1, Photo = 1, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b7[i]+pred_betas$b10[i]+pred_betas$b9[i]),# Media = 2, Temp = 2, Photo = 1, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b8[i]+pred_betas$b10[i]+pred_betas$b9[i]),# Media = 2, Temp = 4, Photo = 1, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b10[i]+pred_betas$b9[i]),# Media = 3, Photo = 1, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b6[i]+pred_betas$b10[i]+pred_betas$b9[i]),# Media = 3, Temp = 1, Photo = 1, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b7[i]+pred_betas$b10[i]+pred_betas$b9[i]),# Media = 3, Temp = 2, Photo = 1, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b8[i]+pred_betas$b10[i]+pred_betas$b9[i]),# Media = 3, Temp = 4, Photo = 1, Treatment = 1
-                             # photoperiod = 2
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b11[i]+pred_betas$b9[i]),# Photo = 2, Treatment = 2
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b11[i]+pred_betas$b9[i]), # Temp = 1, Photo = 2, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b11[i]+pred_betas$b9[i]),# Temp = 2, Photo = 2, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b11[i]+pred_betas$b9[i]),# Temp = 4, Photo = 2, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b11[i]+pred_betas$b9[i]),# Media = 2, Photo = 2, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b6[i]+pred_betas$b11[i]+pred_betas$b9[i]),# Media = 2, Temp = 1, Photo = 2, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b7[i]+pred_betas$b11[i]+pred_betas$b9[i]),# Media = 2, Temp = 2, Photo = 2, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b8[i]+pred_betas$b11[i]+pred_betas$b9[i]),# Media = 2, Temp = 4, Photo = 2, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b11[i]+pred_betas$b9[i]),# Media = 3, Photo = 2, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b6[i]+pred_betas$b11[i]+pred_betas$b9[i]),# Media = 3, Temp = 1, Photo = 2, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b7[i]+pred_betas$b11[i]+pred_betas$b9[i]),# Media = 3, Temp = 2, Photo = 2, Treatment = 1
-                             (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b8[i]+pred_betas$b11[i]+pred_betas$b9[i]))# Media = 3, Temp = 4, Photo = 2, Treatment = 1
-  
-  
+  treatment0_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min)
+  treatment1_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b9)
 }
 
 # Calculate average values across other treatments except for photoperiod
 for(i in 1:nrow(pred_betas)){
-  photoperiod3_pred[i] <- mean((pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min),
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]),# Temp = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]),# Temp = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]),# Temp = 4
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]),# Treatment = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]),# Treatment = 1, Temp = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]),# Treatment = 1, Temp = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]),# Treatment = 1, Temp = 4
-                         # media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]),# Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b4[i]), # Temp = 1, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b4[i]), # Temp = 2, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b4[i]), # Temp = 4, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b4[i]), # Treatment = 1, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b4[i]),# Treatment = 1, Temp = 1, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b4[i]),# Treatment = 1, Temp = 2, Media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b4[i]),# Treatment = 1, Temp = 4, Media = 2
-                         # media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]), # Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b5[i]), # Temp = 1, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b5[i]),# Temp = 2, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b5[i]),# Temp = 4, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b5[i]),# Treatment = 1, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b5[i]),# Treatment = 1, Temp = 1, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b5[i]),# Treatment = 1, Temp = 2, Media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b5[i]))# Treatment = 1, Temp = 4, Media = 3
-  
-  photoperiod1_pred[i] <- mean((pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b10[i]), # Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b10[i]), # Temp = 1, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b10[i]),# Temp = 2, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b10[i]),# Temp = 4, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b10[i]),# Treatment = 1, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b10[i]),# Treatment = 1, Temp = 1, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b10[i]),# Treatment = 1, Temp = 2, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b10[i]),# Treatment = 1, Temp = 4, Photo = 1
-                         # media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b10[i]),# Media = 2, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b4[i]+pred_betas$b10[i]),# Temp = 1, Media = 2, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b4[i]+pred_betas$b10[i]),# Temp = 2, Media = 2, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b4[i]+pred_betas$b10[i]),# Temp = 4, Media = 2, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b4[i]+pred_betas$b10[i]),# Treatment = 1, Media = 2, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b4[i]+pred_betas$b10[i]),# Treatment = 1, Temp = 1, Media = 2, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b4[i]+pred_betas$b10[i]),# Treatment = 1, Temp = 2, Media = 2, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b4[i]+pred_betas$b10[i]),# Treatment = 1, Temp = 4, Media = 2, Photo = 1
-                         # media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b10[i]), # Media = 3, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b5[i]+pred_betas$b10[i]),# Temp = 1, Media = 3, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b5[i]+pred_betas$b10[i]),# Temp = 2, Media = 3, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b5[i]+pred_betas$b10[i]),# Temp = 4, Media = 3, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b5[i]+pred_betas$b10[i]),# Treatment = 1, Media = 3, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b5[i]+pred_betas$b10[i]),# Treatment = 1, Temp = 1, Media = 3, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b5[i]+pred_betas$b10[i]),# Treatment = 1, Temp = 2, Media = 3, Photo = 1
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b5[i]+pred_betas$b10[i]))# Treatment = 1, Temp = 4, Media = 3, Photo = 1
-  
-  photoperiod2_pred[i] <- mean((pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b11[i]), # Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b11[i]), # Temp 1, Photo 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b11[i]),# Temp 2, Photo 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b11[i]),# Temp 4, Photo 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b11[i]),# Treatment 1, Photo 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b11[i]),# Treatment 1,Temp = 1, Photo 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b11[i]),# Treatment 1,Temp = 2, Photo 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b11[i]),# Treatment 1,Temp = 4, Photo 2
-                         # media = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b4[i]+pred_betas$b11[i]),# Media = 2, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b4[i]+pred_betas$b11[i]),# Temp = 1, Media = 2, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b4[i]+pred_betas$b11[i]),# Temp = 2, Media = 2, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b4[i]+pred_betas$b11[i]),# Temp = 4, Media = 2, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b4[i]+pred_betas$b11[i]),# Treatment = 1, Media = 2, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b4[i]+pred_betas$b11[i]),# Treatment = 1,Temp = 1, Media = 2, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b4[i]+pred_betas$b11[i]),# Treatment = 1,Temp = 2, Media = 2, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b4[i]+pred_betas$b11[i]),# Treatment = 1,Temp = 4, Media = 2, Photo = 2
-                         # media = 3
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b5[i]+pred_betas$b11[i]),# Media = 3, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b6[i]+pred_betas$b5[i]+pred_betas$b11[i]),# Temp = 1, Media = 3, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b7[i]+pred_betas$b5[i]+pred_betas$b11[i]),# Temp = 2 Media = 3, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b8[i]+pred_betas$b5[i]+pred_betas$b11[i]),# Temp = 4, Media = 3, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b5[i]+pred_betas$b11[i]),# Treatment = 1, Media = 3, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b6[i]+pred_betas$b5[i]+pred_betas$b11[i]),# Treatment = 1, Temp = 1, Media = 3, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b7[i]+pred_betas$b5[i]+pred_betas$b11[i]),# Treatment = 1, Temp = 2, Media = 3, Photo = 2
-                         (pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min+pred_betas$b9[i]+pred_betas$b8[i]+pred_betas$b5[i]+pred_betas$b11[i]))# Treatment = 1, Temp = 4, Media = 3, Photo = 2
-  
-  
+  photoperiod3_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min)
+  photoperiod1_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b10[i])
+  photoperiod2_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b11[i])
 }
 
 ## Create graphics ####
@@ -453,41 +134,22 @@ dev.off()
 
 ## Calculations for comparisons that are in-text ####
 # Comparing temperature regimes (27/15 is best, 25 is worst)
-plogis(median(temp3_pred)) # 0.2965367; 27/15 treatment
-plogis(quantile(temp3_pred, c(0.025, 0.975))) # 0.1214103 0.5337268 
-plogis(median(temp4_pred)) # 0.1431117; 25 treatment
-plogis(quantile(temp4_pred, c(0.025, 0.975))) # 0.03467017 0.39057752 
-# Get regression coefficient and calculate odds ratio
-pred_betas %>% 
-  summarize(mean = exp(mean(b8)),
-            lower = exp(quantile(b8, c(0.025))),
-            upper = exp(quantile(b8, c(0.975))))
+plogis(median(temp3_pred)) # 0.2553533; 27/15 treatment
+plogis(median(temp4_pred)) # 0.1218129
+plogis(median(temp3_pred)) - plogis(median(temp4_pred))
 
 # Comparing pre-treatments
-median(plogis(treatment0_pred)) # 0.2553533 no treatment
-plogis(quantile(treatment0_pred, c(0.025, 0.975))) # 0.1601580 0.3713785  
-median(plogis(treatment1_pred)) # 0.03005836 treatment
-plogis(quantile(treatment1_pred, c(0.025, 0.975))) # 0.004165587 0.113555069 
-# Get regression coefficient and calculate odds ratio
-pred_betas %>% 
-  summarize(mean = exp(mean(b9)),
-            lower = exp(quantile(b9, c(0.025))),
-            upper = exp(quantile(b9, c(0.975))))
+plogis(median(treatment0_pred))
+plogis(quantile(treatment0_pred, c(0.025, 0.975)))
+plogis(median(treatment1_pred))
+plogis(quantile(treatment1_pred, c(0.025, 0.975)))
 
 # Comparing photoperiods
-median(plogis(photoperiod1_pred)) # 0.3524525 no treatment
-plogis(quantile(photoperiod1_pred, c(0.025, 0.975))) # 0.1434111 0.6453027  
-median(plogis(photoperiod2_pred)) # 0.2294852 treatment
-plogis(quantile(photoperiod2_pred, c(0.025, 0.975))) # 0.06634102 0.56188186  
+median(plogis(photoperiod1_pred)) # 0.3524525 
+median(plogis(photoperiod2_pred)) # 0.2294852 
 
 # Comparing media
-median(plogis(media1_pred)) # 0.2965367 sand
-plogis(quantile(media1_pred, c(0.025, 0.975))) # 0.1434111 0.6453027  
-median(plogis(media2_pred)) # 0.04360644 growth medium
-plogis(quantile(media2_pred, c(0.025, 0.975))) # 0.001481464 0.315760071   
-# Get regression coefficient and calculate odds ratio
-pred_betas %>% 
-  summarize(mean = mean(b4),
-            lower = quantile(b4, c(0.025)),
-            upper = quantile(b4, c(0.975)))
-  
+median(plogis(media1_pred)) # 0.293172 sand
+plogis(quantile(media1_pred, c(0.025, 0.975)))
+median(plogis(media2_pred)) # 0.03738197 growth medium
+plogis(quantile(media2_pred, c(0.025, 0.975)))
