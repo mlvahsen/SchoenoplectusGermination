@@ -5,7 +5,8 @@
 ## Preliminaries ####
 # Load libraries
 library(tidyverse);library(patchwork);library(ggmcmc)
-library(EnvStats);library(cowplot); library(spatstat)
+library(EnvStats);library(cowplot); library(spatstat);
+library(here)
 
 # Set ggplot theme
 theme_set(theme_classic())

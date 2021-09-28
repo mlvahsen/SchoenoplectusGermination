@@ -18,9 +18,7 @@ germ_all_final <- read_csv(here("outputs","germ_all_data_forModel.csv"))
 # Read in coda objects from all four models
 Model3_coda <- read_rds(here("outputs","Model3_coda_forPlotting.rds"))
 
-## Calculate predicted medians for each treatment ####  
-
-# This averages across all other treatments and predicts means at depth = 0.
+## Calculate predicted averages for each treatment ####  
 
 # Extract regression slopes from best model
 ggs(Model3_coda) %>% 
@@ -57,9 +55,8 @@ photoperiod1_pred <- NULL
 photoperiod2_pred <- NULL
 photoperiod3_pred <- NULL
 
-# Calculate average values across other treatments except for temperature --
-# note this is not a weighted mean, but just showing differences across
-# treatments
+# Calculate average values for each temperature treatment at reference levels
+# for other experimental treatments
 
 for(i in 1:nrow(pred_betas)){
   temp3_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min)
@@ -68,20 +65,23 @@ for(i in 1:nrow(pred_betas)){
   temp4_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b8[i])
 }
 
-# Calculate average values across other treatments except for media
+# Calculate average values for each media treatment at reference levels
+# for other experimental treatments
 for(i in 1:nrow(pred_betas)){
   media3_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min)
   media1_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b4)
   media2_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b5)
 }
 
-# Calculate average values across other treatments except for pre-treatment
+# Calculate average values for each pre-treatment at reference levels
+# for other experimental treatments
 for(i in 1:nrow(pred_betas)){
   treatment0_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min)
   treatment1_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b9)
 }
 
-# Calculate average values across other treatments except for photoperiod
+# Calculate average values for each photoperiod treatment at reference levels
+# for other experimental treatments
 for(i in 1:nrow(pred_betas)){
   photoperiod3_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min)
   photoperiod1_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b10[i])
@@ -90,7 +90,6 @@ for(i in 1:nrow(pred_betas)){
 
 ## Create graphics ####
 
-# Create graph for temperature
 a <- tibble(value = c(plogis(temp1_pred), plogis(temp2_pred),
                       plogis(temp3_pred), plogis(temp4_pred)),
        temp = rep(c("30", "20/15", "27/15", "25"), each = length(temp1_pred))) %>%
