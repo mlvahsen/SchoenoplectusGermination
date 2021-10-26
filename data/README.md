@@ -12,7 +12,7 @@ The metadata for the two data files in this folder are as follows:
 * **Media1** = indicator variable to test for the effect of Media 2 vs Media 1 (reference level)
 * **Media2** = indicator variable to test for the effect of Media 3 vs Media 1 (reference level)
 * **Temp1** = indicator variable to test for the effect of Temp 1 vs Temp 3 (reference level)
-* **Temp2** = indicator variable to test for the effect of Temp 3 vs Temp 3 (reference level)
+* **Temp2** = indicator variable to test for the effect of Temp 2 vs Temp 3 (reference level)
 * **Temp3** = indicator variable to test for the effect of Temp 4 vs Temp 3 (reference level)
 * **Photo1** = indicator variable to test for the effect of Photo 1 vs Photo 3 (reference level)
 * **Photo2** = indicator variable to test for the effect of Photo 2 vs Photo 3 (reference level)
