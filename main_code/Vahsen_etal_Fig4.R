@@ -16,9 +16,9 @@ theme_set(theme_classic())
 germ_all_final <- read_csv(here("outputs","germ_all_data_forModel.csv"))
 
 # Read in coda objects from all four models
-Model3_coda <- read_rds(here("outputs","Model3_coda_forPlotting.rds"))
+Model3_coda <- read_rds(here("outputs", "Model3_coda_forPlotting.rds"))
 
-## Calculate predicted averages for each treatment ####  
+## Calculate predicted values for each treatment ####  
 
 # Extract regression slopes from best model
 ggs(Model3_coda) %>% 
@@ -55,37 +55,37 @@ photoperiod1_pred <- NULL
 photoperiod2_pred <- NULL
 photoperiod3_pred <- NULL
 
-# Calculate average values for each temperature treatment at reference levels
+# Calculate predicted values for each temperature treatment at reference levels
 # for other experimental treatments
 
 for(i in 1:nrow(pred_betas)){
-  temp3_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min)
-  temp1_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b6[i])
-  temp2_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b7[i])
-  temp4_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b8[i])
+  temp3_pred[i] <- pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min
+  temp1_pred[i] <- pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b6[i]
+  temp2_pred[i] <- pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b7[i]
+  temp4_pred[i] <- pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b8[i]
 }
 
-# Calculate average values for each media treatment at reference levels
+# Calculate predicted values for each media treatment at reference levels
 # for other experimental treatments
 for(i in 1:nrow(pred_betas)){
-  media3_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min)
-  media1_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b4)
-  media2_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b5)
+  media3_pred[i] <- pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min
+  media1_pred[i] <- pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b4[i]
+  media2_pred[i] <- pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b5[i]
 }
 
-# Calculate average values for each pre-treatment at reference levels
+# Calculate predicted values for each pre-treatment at reference levels
 # for other experimental treatments
 for(i in 1:nrow(pred_betas)){
-  treatment0_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min)
-  treatment1_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b9)
+  treatment0_pred[i] <- pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min
+  treatment1_pred[i] <- pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b9[i]
 }
 
-# Calculate average values for each photoperiod treatment at reference levels
+# Calculate predicted values for each photoperiod treatment at reference levels
 # for other experimental treatments
 for(i in 1:nrow(pred_betas)){
-  photoperiod3_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min)
-  photoperiod1_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b10[i])
-  photoperiod2_pred[i] <- mean(pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b11[i])
+  photoperiod3_pred[i] <- pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min
+  photoperiod1_pred[i] <- pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b10[i]
+  photoperiod2_pred[i] <- pred_betas$b0[i]+pred_betas$b1[i]*xa_std_min + pred_betas$b11[i]
 }
 
 ## Create graphics ####
@@ -148,7 +148,7 @@ median(plogis(photoperiod1_pred)) # 0.3524525
 median(plogis(photoperiod2_pred)) # 0.2294852 
 
 # Comparing media
-median(plogis(media1_pred)) # 0.293172 sand
+median(plogis(media1_pred)) # 0.2965367 sand
 plogis(quantile(media1_pred, c(0.025, 0.975)))
-median(plogis(media2_pred)) # 0.03738197 growth medium
+median(plogis(media2_pred)) # 0.04360644 growth medium
 plogis(quantile(media2_pred, c(0.025, 0.975)))
