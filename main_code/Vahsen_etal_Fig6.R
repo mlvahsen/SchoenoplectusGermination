@@ -35,7 +35,7 @@ MuMIn::AICc(tetra_model_noA) # Best model -- final model just includes Depth
 MuMIn::AICc(tetra_model_noD)
 
 ## Create Figure 6 ####
-png(here("figs_tables","Fig6.png"), height = 4.5, width = 3, units = "in", res = 300)
+png(here("figs_tables","Fig6.png"), height = 4, width = 2.8, units = "in", res = 300)
 tetra %>% 
   ggplot(aes(x = Depth, y = prop)) +
   geom_point() +
