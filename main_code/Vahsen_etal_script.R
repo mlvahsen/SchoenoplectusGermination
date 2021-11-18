@@ -68,34 +68,28 @@ germ_all %>%
   group_by(factor(Assay_Num)) %>% 
   summarize(total_seeds = sum(Seeds_Planted)) %>% 
   filter(total_seeds == min(total_seeds) | total_seeds == max(total_seeds))
-# 1 6                            74
-# 2 8                          3868
 
 # Min and max number of seeds from different core locations
 germ_all %>% 
   group_by(factor(Core_Location)) %>% 
   summarize(total_seeds = sum(Seeds_Planted)) %>% 
   filter(total_seeds == min(total_seeds) | total_seeds == max(total_seeds))
-# 1 1                              3644
-# 2 5                                 4
 
 # Number of seeds planted from the top 10cm
 germ_all %>% 
   filter(Depth_Top < 10) %>% 
-  summarize(sum(Seeds_Planted)) # 3808
+  summarize(sum(Seeds_Planted))
 
 # Number of seeds planted from greater than 30 cm
 germ_all %>% 
   filter(Depth_Top > 30) %>% 
-  summarize(sum(Seeds_Planted)) # 120
+  summarize(sum(Seeds_Planted)) 
 
 # Min and max average germination success by Assay Number
 germ_all %>% 
   group_by(factor(Assay_Num)) %>% 
   summarize(germ_success = sum(Germinated)/sum(Seeds_Planted)) %>% 
   filter(germ_success == max(germ_success) | germ_success == min(germ_success))
-# 1 3                         0.0132
-# 2 13                         0.172 
 
 
 # Create a histogram to show zero-inflation
@@ -181,16 +175,16 @@ Model4_fit <- stan(model_code = model4_stan,
 ## Model comparison ####
 
 # Calculate WAIC for each model
-waic(extract_log_lik(Model1_fit)) # 1084.3
-waic(extract_log_lik(Model2_fit)) # 1030.4
-waic(extract_log_lik(Model3_fit)) # 771.9 # Model 3 (BB) is the best model
-waic(extract_log_lik(Model4_fit)) # 773.0
+waic(extract_log_lik(Model1_fit)) 
+waic(extract_log_lik(Model2_fit)) 
+waic(extract_log_lik(Model3_fit)) 
+waic(extract_log_lik(Model4_fit))
 
 # Calculate LOO (leave-one-out cross validation) for each model
-loo(Model1_fit) # 1088.1
-loo(Model2_fit) # 1034.0
-loo(Model3_fit) # 773.2
-loo(Model4_fit) # 774.4
+loo(Model1_fit) 
+loo(Model2_fit) 
+loo(Model3_fit)
+loo(Model4_fit) 
 
 ## Post-processing of best model ####
 samples <- ggs(Model3_coda) %>%

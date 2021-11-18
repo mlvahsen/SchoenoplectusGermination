@@ -142,15 +142,13 @@ for (i in 1:length(alpha_prov)){
 pred_prov_averages_fortext <- apply(pred_prov_fortext, c(1,2), weighted.mean, w = weights)
 # Calculate difference between Kirkpatrick (1) and Corn (2)
 median(plogis(pred_prov_averages_fortext[1,])) - median(plogis(pred_prov_averages_fortext[2,])) 
-# 0.1733297
+
 # This is the same as 
 plogis(median(pred_prov_averages_fortext[1,])) - plogis(median(pred_prov_averages_fortext[2,])) 
-# 0.1733297
+
 
 # Calculate 95% quantiles around that
 quantile(plogis(pred_prov_averages_fortext[1,]) - plogis(pred_prov_averages_fortext[2,]), c(0.025, 0.975)) 
-# 2.5%     97.5% 
-# 0.1245294 0.2164936 
 
 # Calculate proportion of observations that were 0s
 germ_all_final %>% 
@@ -158,6 +156,6 @@ germ_all_final %>%
   nrow() -> zero_trials
 
 zero_trials / nrow(germ_all_final)      
-# 0.590604     
+    
       
       

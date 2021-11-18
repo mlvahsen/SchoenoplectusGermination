@@ -133,8 +133,8 @@ dev.off()
 
 ## Calculations for comparisons that are in-text ####
 # Comparing temperature regimes (27/15 is best, 25 is worst)
-plogis(median(temp3_pred)) # 0.2553533; 27/15 treatment
-plogis(median(temp4_pred)) # 0.1218129
+plogis(median(temp3_pred)) 
+plogis(median(temp4_pred)) 
 plogis(median(temp3_pred)) - plogis(median(temp4_pred))
 
 # Comparing pre-treatments
@@ -144,11 +144,11 @@ plogis(median(treatment1_pred))
 plogis(quantile(treatment1_pred, c(0.025, 0.975)))
 
 # Comparing photoperiods
-median(plogis(photoperiod1_pred)) # 0.3524525 
-median(plogis(photoperiod2_pred)) # 0.2294852 
+median(plogis(photoperiod1_pred)) 
+median(plogis(photoperiod2_pred))
 
 # Comparing media
-median(plogis(media1_pred)) # 0.2965367 sand
+median(plogis(media1_pred)) 
 plogis(quantile(media1_pred, c(0.025, 0.975)))
-median(plogis(media2_pred)) # 0.04360644 growth medium
+median(plogis(media2_pred)) 
 plogis(quantile(media2_pred, c(0.025, 0.975)))

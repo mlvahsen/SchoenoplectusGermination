@@ -194,10 +194,9 @@ pred_quantiles_fortext <- apply(pred_averages_fortext, 2, quantile, probs = c(0.
 # These are the predicted germination probabilities (quantiles and median)
 predicted_medians <- plogis(apply(pred_averages_fortext, 2, median))
 predicted_medians
-# 0.21803969 0.09298733 0.02455019
+
 plogis(pred_quantiles_fortext)
-# 2.5%  0.1410249 0.05827305 0.01322760
-# 97.5% 0.3128686 0.13911843 0.04262377
+
 
 # Calculate the CIs for Model 4 parameter to show that there is no benefit of
 # adding zero-inflation to the beta-binomial model
@@ -206,8 +205,6 @@ ggs(Model4_coda) %>%
   summarize(mean = mean(value),
             lower = quantile(value, 0.025),
             upper = quantile(value, 0.975))
-# mean lower upper
-# -0.787 -10.5  7.49
 
 # Calculate predicted CIs for age depths for text (20cm depth)
 which(germ_all_final$Depth_Top == 20)
@@ -220,7 +217,6 @@ ggs(Model3_coda, family = "xa") %>%
   summarize(mean = mean(value),
             lower = quantile(value, 0.025),
             upper = quantile(value, 0.975)) 
-# 107.  93.9  120.
 
 # Get slope of b1 for in-text
 ggs(Model3_coda) %>% 
@@ -228,9 +224,6 @@ ggs(Model3_coda) %>%
   summarize(mean = mean(value),
             lower = quantile(value, 0.025),
             upper = quantile(value, 0.975)) 
-# mean lower upper
-# <dbl> <dbl> <dbl>
-# -1.32 -1.62 -1.04
 
 ## Calculate R2 for each model ####
 give_me_R2 <- function(preds,actual){
@@ -281,14 +274,6 @@ Model4_coda %>%
   mutate(observed = germ_all_final$Germinated) -> Model4_PO
 
 give_me_R2(Model1_PO$predicted, Model1_PO$observed)
-# 0.9118568
-
 give_me_R2(Model2_PO$predicted, Model2_PO$observed)
-# 0.8899808
-
 give_me_R2(Model3_PO$predicted, Model3_PO$observed)
-# 0.8689081
-
 give_me_R2(Model4_PO$predicted, Model4_PO$observed)
-# 0.8658285
-

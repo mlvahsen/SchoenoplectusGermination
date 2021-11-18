@@ -53,8 +53,6 @@ dev.off()
 
 # Number of total seeds tested
 sum(tetra$Seeds_Tested)
-# 470
 
 # Total proportion of seeds that had tetrazolium positive
 sum(tetra$Tetra_Viable) / sum(tetra$Seeds_Tested)
-# 0.1042553
